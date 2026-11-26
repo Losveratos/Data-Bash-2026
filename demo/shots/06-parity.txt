@@ -1,0 +1,8 @@
+PS> node pbip\test\parity.mjs --report "<demo>\out\pbip\Data Bash.Report" --spec "<demo>\out\databash.json"
+Power BI · 3 Kacheln aus Data Bash.Report
+  ok  keine Befunde
+
+PS> node pbip\test\parity.mjs --app --report "<demo>\out\pbip\Data Bash.Report" --spec "<demo>\out\databash.json"
+App · 3 Kacheln aus databash.json
+  ok  keine Befunde
+

@@ -1,0 +1,53 @@
+PS> node dwg.mjs app page --app "<demo>\out\app" --spec "<demo>\out\databash.json" --connector showcase --model "examples\showcase\ZlatyLev Showcase.SemanticModel"
+  src/vendor/dwg-visuals/
+  src/vendor/dwg-pixelgrid/
+  src/vendor/dwg-fonts/
+  src/dwg/dwg-page.spec.ts
+  src/dwg/dwg-page.ts
+  src/dwg/DwgPage.tsx
+  src/dwg/DwgShell.tsx
+  src/dwg/DwgVisual.tsx
+  src/dwg/pages/uberblick.ts
+  src/dwg/pages/uberblick.dax
+  src/dwg/apps/data-bash-2026.ts
+  src/dwg/apps/data-bash-2026.dax
+  ../../fabscan.json (Konnektor showcase → Modell „ZlatyLev Showcase“, 0 feste Filter sichtbar, für fabscan)
+
+In der App einbinden (App.tsx), ganze Spec mit Navigation und Filter-Panel:
+  import { DwgShell } from './dwg/DwgShell';
+  import { app } from './dwg/apps/data-bash-2026';
+  <DwgShell app={app} connection="showcase" isDark={isDark} />
+
+PS> Get-Content <demo>\out\app\packages\frontend\src\dwg\pages\uberblick.dax -TotalCount 26
+// Abfragen der Seite „Überblick“ ohne Querfilter, zum Prüfen in der DAX-Abfrageansicht.
+// erzeugt von `dwg app page`, nicht von Hand ändern.
+
+// Kachel c03 (chartkitchen)
+EVALUATE
+    SUMMARIZECOLUMNS(
+        'Kalender'[Monatsname],
+        'Kalender'[Monat],
+        "actual", 'Fakten'[Umsatz AC],
+        "previousYear", 'Fakten'[Umsatz PY],
+        "forecast", 'Fakten'[Umsatz FC]
+    )
+ORDER BY 'Kalender'[Monat]
+
+// Kachel c13 (chartkitchen)
+EVALUATE
+    SUMMARIZECOLUMNS(
+        'Kalender'[Monatsname],
+        'Kunde'[Kanal],
+        'Kalender'[Monat],
+        'Kunde'[Kanal Sort],
+        "actual", 'Fakten'[Umsatz AC],
+        "previousYear", 'Fakten'[Umsatz PY],
+        "forecast", 'Fakten'[Umsatz FC]
+    )
+ORDER BY 'Kalender'[Monat], 'Kunde'[Kanal Sort]
+
+PS> node app\test\showcase-e2e.mjs --spec "<demo>\out\databash.json" --out "<demo>\out\harness"
+  ok   Überblick · 3 Kacheln, 0 Abfragen · c03 Δ-Skala geprüft (7 Kat.)
+
+Showcase: 1/1 Seiten ohne Befund (Screenshots unter ..\..\Data Bash 2026\demo\out\harness)
+

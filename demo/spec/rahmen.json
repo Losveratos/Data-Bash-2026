@@ -1,0 +1,12 @@
+{
+  "name": "Data Bash 2026",
+  "about": "Live-Demo Data Bash 2026: eine kleine App-Spec wird zur Fabric-App-Seite und zum selben Power-BI-Bericht. Daten: synthetischer Brauerei-Datensatz (Modell ZlatyLev Showcase), Ist bis August 2026, Plan und Forecast für das ganze Jahr. Darstellung an IBCS angelehnt. Alle Zahlen sind Demodaten.",
+  "resolution": "fullhd",
+  "visualHeaders": true,
+  "footer": "Synthetische Demodaten. Darstellung an IBCS angelehnt; IBCS® ist eine eingetragene Marke des IBCS Institute.",
+  "slicers": [
+    { "column": "'Kalender'[Jahr]", "label": "Jahr", "default": [2026], "multi": false },
+    { "column": "'Kunde'[Kanal]", "label": "Kanal", "default": [], "multi": true, "sortBy": "'Kunde'[Kanal Sort]" }
+  ],
+  "pages": []
+}

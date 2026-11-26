@@ -1,0 +1,4 @@
+export/shots-*/
+node_modules/
+demo/out/
+export/*.pdf

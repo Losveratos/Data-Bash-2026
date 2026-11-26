@@ -1,0 +1,57 @@
+PS> node dwg.mjs tile add --spec "<demo>\out\databash.json" --new-page Überblick --template C03 --model "examples\showcase\ZlatyLev Showcase.SemanticModel" --measure Umsatz --rect 327,123,774,438 --title "Nettoumsatz in EUR" --description "Wie läuft der Umsatz gegen das Vorjahr, welcher Kanal trägt ihn, und wie wird aus dem Plan das Ist-Ergebnis? Drei Kacheln aus drei Templates, eine Spec für App und Power BI."
+C03 · Säulen mit Vorjahres-Abweichung → Seite „Überblick“, Kachel „c03“ [327, 123, 774, 438], Kennzahlen-Stamm „umsatz“
+  category        Pflicht    'Kalender'[Monatsname]                      Vorschlag    auch: 'Kalender'[Monat], 'Kalender'[Datum]
+  actual          Pflicht    'Fakten'[Umsatz AC]                         Vorschlag    auch: 'Fakten'[Absatz hl AC], 'Fakten'[DB AC]
+  previousYear    Pflicht    'Fakten'[Umsatz PY]                         Vorschlag    auch: 'Fakten'[Umsatz PY bis Ist], 'Fakten'[Absatz hl PY]
+  forecast        empfohlen  'Fakten'[Umsatz FC]                         Vorschlag    auch: 'Fakten'[Absatz hl FC], 'Fakten'[GuV FC]
+  optional, nicht gesetzt: plan, comments
+
+<demo>\out\databash.json: Kachel geschrieben. Weiter: dwg app page … bzw. dwg pbip pages …
+
+PS> node dwg.mjs tile add --spec "<demo>\out\databash.json" --page Überblick --template C13 --model "examples\showcase\ZlatyLev Showcase.SemanticModel" --measure Umsatz --rect 327,579,774,438
+C13 · Small Multiples → Seite „Überblick“, Kachel „c13“ [327, 579, 774, 438], Kennzahlen-Stamm „umsatz“
+  category        Pflicht    —                                                        auch: 'Kunde'[Kanal], 'Marktsegment'[Land]
+  actual          Pflicht    'Fakten'[Umsatz AC]                         Vorschlag    auch: 'Fakten'[Absatz hl AC], 'Fakten'[DB AC]
+  previousYear    empfohlen  'Fakten'[Umsatz PY]                         Vorschlag    auch: 'Fakten'[Umsatz PY bis Ist], 'Fakten'[Absatz hl PY]
+  multiples       Pflicht    —                                                        auch: 'Kunde'[Kanal], 'Marktsegment'[Land]
+  optional, nicht gesetzt: plan, forecast, comments
+
+Nicht geschrieben (2):
+  Pflichtrolle category (Kategorie) ohne Feld. Mit --category angeben, z. B. 'Kunde'[Kanal], 'Marktsegment'[Land], 'Produkt'[Produkt].
+  Pflichtrolle multiples (Small Multiples) ohne Feld. Mit --multiples angeben, z. B. 'Kunde'[Kanal], 'Marktsegment'[Land], 'Produkt'[Produkt].
+
+PS> node dwg.mjs tile add --spec "<demo>\out\databash.json" --page Überblick --template C13 --model "examples\showcase\ZlatyLev Showcase.SemanticModel" --measure Umsatz --rect 327,579,774,438 --category Kalender.Monatsname --multiples Kunde.Kanal --forecast "Fakten.Umsatz FC" --title "Nettoumsatz in EUR je Kanal"
+C13 · Small Multiples → Seite „Überblick“, Kachel „c13“ [327, 579, 774, 438], Kennzahlen-Stamm „umsatz“
+  category        Pflicht    'Kalender'[Monatsname]                      angegeben  
+  actual          Pflicht    'Fakten'[Umsatz AC]                         Vorschlag    auch: 'Fakten'[Absatz hl AC], 'Fakten'[DB AC]
+  previousYear    empfohlen  'Fakten'[Umsatz PY]                         Vorschlag    auch: 'Fakten'[Umsatz PY bis Ist], 'Fakten'[Absatz hl PY]
+  forecast        optional   'Fakten'[Umsatz FC]                         angegeben  
+  multiples       Pflicht    'Kunde'[Kanal]                              angegeben  
+  optional, nicht gesetzt: plan, comments
+
+<demo>\out\databash.json: Kachel geschrieben. Weiter: dwg app page … bzw. dwg pbip pages …
+
+PS> node dwg.mjs tile add --spec "<demo>\out\databash.json" --page Überblick --template T04B --model "examples\showcase\ZlatyLev Showcase.SemanticModel" --rect 1119,123,774,894
+T04B · GuV mit Δ-Wasserfall → Seite „Überblick“, Kachel „t04b“ [1119, 123, 774, 894], Kennzahlen-Stamm „guv“
+  levels          Pflicht    'Konto'[L1], 'Konto'[L2]                    Vorschlag    auch: Bilanzkonto: L1, L2, Cashflowkonto: L1, L2
+  ac              Pflicht    'Fakten'[GuV AC]                            Vorschlag    auch: 'Fakten'[GuV ± AC], 'Fakten'[Absatz hl AC]
+  pl              Pflicht    'Fakten'[GuV PL bis Ist]                    Vorschlag    auch: 'Fakten'[GuV PL], 'Fakten'[GuV ± PL]
+  account         empfohlen  'Konto'[KontoID]                            Vorschlag    auch: 'Bilanz'[KontoID], 'Bilanzkonto'[KontoID]
+  accountName     empfohlen  'Konto'[Konto]                              Vorschlag    auch: 'Bilanzkonto'[Konto], 'Cashflowkonto'[Konto]
+  sortOrder       empfohlen  'Konto'[SortOrder]                          Vorschlag    auch: 'Bilanzkonto'[SortOrder], 'Cashflowkonto'[SortOrder]
+  rowType         empfohlen  'Konto'[RowType]                            Vorschlag    auch: 'Bilanzkonto'[RowType], 'Cashflowkonto'[RowType]
+  formulaDef      empfohlen  'Konto'[FormulaDef]                         Vorschlag    auch: 'Bilanzkonto'[FormulaDef], 'Cashflowkonto'[FormulaDef]
+  signConvention  empfohlen  'Konto'[SignConvention]                     Vorschlag    auch: 'Bilanzkonto'[SignConvention], 'Cashflowkonto'[SignConvention]
+  displayInvert   empfohlen  'Konto'[DisplayInvert]                      Vorschlag    auch: 'Bilanzkonto'[DisplayInvert], 'Cashflowkonto'[DisplayInvert]
+  varianceInvert  empfohlen  'Konto'[VarianceInvert]                     Vorschlag    auch: 'Bilanzkonto'[VarianceInvert], 'Cashflowkonto'[VarianceInvert]
+  optional, nicht gesetzt: py, fc, period, parent, comment, colCategory
+
+<demo>\out\databash.json: Kachel geschrieben. Weiter: dwg app page … bzw. dwg pbip pages …
+
+PS> node "<demo>\tools\feinschliff.mjs" "<demo>\out\databash.json"
+  t04b  objects.numbers.scaling = "m"
+  t04b  objects.titleBlock.measureLine = "GuV in Mio. EUR, Abweichung zum Plan als Wasserfall"
+  t04b  objects.titleBlock.periodLine = "Jan..Aug 2026 (YTD), AC gegen PL"
+  c13   sortBy 'Kunde'[Kanal] = 'Kunde'[Kanal Sort]
+<demo>\out\databash.json: Feinschliff geschrieben.
+

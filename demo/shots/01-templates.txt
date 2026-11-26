@@ -1,0 +1,52 @@
+PS> node dwg.mjs templates --visual chartkitchen
+ChartKitchen 1.58.0.0
+  Zeitverlauf
+    C01   Säulen gestapelt nach Segment               Pflicht: category, actual, series
+    C07   Gestapelte Fläche über die Zeit             Pflicht: category, actual, series
+    C03   Säulen mit Vorjahres-Abweichung             Pflicht: category, actual, previousYear
+    C19   Säulen gegen Plan mit Jahr                  Pflicht: category, actual, plan
+    C05   Integrierte Jahresbrücke                    Pflicht: category, actual, previousYear
+    C08   Linie für lange Reihen                      Pflicht: category, actual
+    C21   Kumulierte Linie mit R12                    Pflicht: category, actual, plan
+    C22   Serienlinien mit Index                      Pflicht: category, actual, series
+    C20   Bestand und Fluss                           Pflicht: category, actual, rowType, series
+    C23   Scatter-Zeitpfad                            Pflicht: category, actual, xValue, series
+  Struktur
+    C02   Balken gestapelt nach Segment               Pflicht: category, actual, series
+    C25   Marimekko                                   Pflicht: category, actual, series
+    C04   Balken mit Plan-Abweichung                  Pflicht: category, actual, plan
+    C06   Treiber-Brücke je Kategorie                 Pflicht: category, actual, previousYear
+    C17   Treiber-Brücke waagerecht                   Pflicht: category, actual, previousYear
+  Rangfolgen gegen Plan
+    C14   Balkentabelle nach ΔPL                      Pflicht: category, actual, plan
+    C15   Balkentabelle nach ΔPL %                    Pflicht: category, actual, plan
+    C16   Balkentabelle nach AC                       Pflicht: category, actual, plan
+  Korrelation
+    C09   Streudiagramm mit Quadranten                Pflicht: category, actual, xValue
+    C10   Blasendiagramm                              Pflicht: category, actual, xValue
+    C24   Blasen mit Anteil                           Pflicht: category, actual, xValue, bubbleSize, bubbleShare
+    C18   Abweichungs-Scatter                         Pflicht: category, actual, xValue
+  Brücken & Mehrfach
+    C12   Wasserfall / GuV-Brücke                     Pflicht: category, actual
+    C13   Small Multiples                             Pflicht: category, actual, multiples
+
+Details: dwg templates <ID>   Kachel anlegen: dwg tile add --template <ID> …
+
+PS> node dwg.mjs templates C03
+C03 · Säulen mit Vorjahres-Abweichung (ChartKitchen, Zeitverlauf)
+  Monatsbericht AC vs. PY
+
+  Rollen
+    category        Pflicht     Spalte    Kategorie
+    actual          Pflicht     Kennzahl  Ist (AC)
+    previousYear    Pflicht     Kennzahl  Vorjahr (PY)
+    forecast        empfohlen   Kennzahl  Forecast (FC)
+    plan            optional    Kennzahl  Plan / Budget (PL)
+    comments        optional    Kennzahl  Kommentare
+
+  Stellt im Visual ein
+    chart: orientation=columns, comparisonMode=py, showAbsoluteVariance=true, showRelativeVariance=true, dualVariance=false, waterfallStyle=false
+    labels: roundedZero=plain
+
+  Kachel anlegen: dwg tile add --spec <app-spec.json> --page <Seite> --template C03 --model <X.SemanticModel> [--measure <Stamm>]
+

@@ -1,0 +1,11 @@
+PS> node dwg.mjs lint --spec "<demo>\out\databash.json"
+
+App-Rahmen und Farben
+  Warnung  Hell: Schrift auf Akzentflächen (aktive Seite, gewählte Werte) hat 4,4:1 (Ziel ≥ 4,5:1).
+           → #ffffff auf #c25a2d; Farbe in app/templates/DwgShell.tsx (palette) anpassen, gilt dann für alle Apps.
+
+databash.json: 0 Fehler, 1 Warnungen, 0 Hinweise.
+
+PS> node dwg.mjs check --spec "<demo>\out\databash.json" --model "examples\showcase\ZlatyLev Showcase.SemanticModel"
+1 Seiten, 3 Kacheln, 0 Probleme, 0 Hinweise
+
