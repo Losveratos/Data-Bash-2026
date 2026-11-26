@@ -20,8 +20,9 @@ param([switch]$Record, [switch]$Pause, [switch]$NoLive)
 #  Schritt 0 · Vorbereitung (Pfade, Ausgabe-Kodierung, Hilfsfunktion)                      ca. 0,5 s
 #  Leert demo\out und startet mit dem Rahmen der App (Name, Slicer Jahr und Kanal, Fußtext).
 # -----------------------------------------------------------------------------------------------------
-$Dwg    = 'C:\Users\MichaelTenner\Desktop\PnL Demo\dwg-cli-databash'
-$Demo   = 'C:\Users\MichaelTenner\Desktop\Data Bash 2026\demo'
+# dwg-cli-Klon auf origin/main: per Umgebungsvariable DWG_CLI setzen, sonst Standardpfad
+$Dwg    = if ($env:DWG_CLI) { $env:DWG_CLI } else { Join-Path $env:USERPROFILE 'Desktop\PnL Demo\dwg-cli-databash' }
+$Demo   = if ($PSScriptRoot) { $PSScriptRoot } else { Join-Path $env:USERPROFILE 'Desktop\Data Bash 2026\demo' }
 $Out    = Join-Path $Demo 'out'
 $Shots  = Join-Path $Demo 'shots'
 $Spec   = Join-Path $Out 'databash.json'
@@ -32,7 +33,7 @@ $Report = Join-Path $Pbip 'Data Bash.Report'
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $OutputEncoding = [System.Text.Encoding]::UTF8
 $env:PYTHONIOENCODING = 'utf-8'
-$env:SWC_NATIVE_BINDING_CACHE = 'C:\Users\MichaelTenner\Desktop\fabric-apps\swc-cache'
+if (-not $env:SWC_NATIVE_BINDING_CACHE) { $env:SWC_NATIVE_BINDING_CACHE = Join-Path $env:USERPROFILE 'Desktop\fabric-apps\swc-cache' }
 Set-Location $Dwg
 $Log = @(); $Exits = 0; $Times = [ordered]@{}
 
@@ -53,7 +54,7 @@ function Save-Shot($Name) {
     if (-not $Record) { $script:Log = @(); return }
     $enc = New-Object System.Text.UTF8Encoding $false
     $text = ($script:Log -join "`r`n").Replace($Dwg, '<dwg>').Replace($Dwg.Replace('\', '/'), '<dwg>')
-    $text = $text.Replace($Demo, '<demo>').Replace($Demo.Replace('\', '/'), '<demo>').Replace('C:\Users\MichaelTenner', '~')
+    $text = $text.Replace($Demo, '<demo>').Replace($Demo.Replace('\', '/'), '<demo>').Replace($env:USERPROFILE, '~')
     [System.IO.File]::WriteAllText((Join-Path $Shots $Name), $text + "`r`n", $enc)
     $script:Log = @()
 }

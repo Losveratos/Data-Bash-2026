@@ -391,20 +391,24 @@ body.hud #hud{display:block}
   <div class="kicker" data-en="Step 2 · the spec">Schritt 2 · die Spec</div>
   <h2 class="t" style="max-width:none" data-en="The spec is text: checkable, versioned, readable by agents">Die Spec ist Text: prüfbar, versioniert, für Agenten lesbar</h2>
   <div class="cols c2" style="margin-top:16px">
-<pre class="json"><span class="c">// app-spec.json (Auszug / excerpt)</span>
-{ <span class="k">"name"</span>: <span class="s">"Data Bash Demo"</span>,
+<pre class="json"><span class="c">// demo/spec/databash.json (Auszug / excerpt)</span>
+{ <span class="k">"name"</span>: <span class="s">"Data Bash 2026"</span>,
+  <span class="k">"slicers"</span>: [ <span class="c">/* Jahr, Kanal */</span> ],
   <span class="k">"pages"</span>: [{ <span class="k">"name"</span>: <span class="s">"Überblick"</span>,
-    <span class="k">"tiles"</span>: [{
-      <span class="k">"id"</span>: <span class="s">"t04b"</span>, <span class="k">"visual"</span>: <span class="s">"pnl"</span>,
-      <span class="k">"template"</span>: <span class="s">"T04B"</span>,
-      <span class="k">"rect"</span>: [<span class="n">27</span>, <span class="n">123</span>, <span class="n">1866</span>, <span class="n">894</span>],
-      <span class="k">"bindings"</span>: {
-        <span class="k">"levels"</span>: [<span class="s">"'Konto'[L1]"</span>, <span class="s">"'Konto'[L2]"</span>],
-        <span class="k">"ac"</span>:     <span class="s">"'Fakten'[GuV AC]"</span>,
-        <span class="k">"pl"</span>:     <span class="s">"'Fakten'[GuV PL bis Ist]"</span>,
-        <span class="k">"rowType"</span>: <span class="s">"'Konto'[RowType]"</span>
-      }
-    }]
+    <span class="k">"tiles"</span>: [
+      { <span class="k">"id"</span>: <span class="s">"c03"</span>, <span class="k">"visual"</span>: <span class="s">"chartkitchen"</span>, <span class="c">/* … */</span> },
+      { <span class="k">"id"</span>: <span class="s">"c13"</span>, <span class="k">"visual"</span>: <span class="s">"chartkitchen"</span>, <span class="c">/* … */</span> },
+      { <span class="k">"id"</span>: <span class="s">"t04b"</span>, <span class="k">"visual"</span>: <span class="s">"pnl"</span>,
+        <span class="k">"rect"</span>: [<span class="n">1119</span>, <span class="n">123</span>, <span class="n">774</span>, <span class="n">894</span>],
+        <span class="k">"bindings"</span>: {
+          <span class="k">"levels"</span>: [<span class="s">"'Konto'[L1]"</span>, <span class="s">"'Konto'[L2]"</span>],
+          <span class="k">"ac"</span>: <span class="s">"'Fakten'[GuV AC]"</span>,
+          <span class="k">"pl"</span>: <span class="s">"'Fakten'[GuV PL bis Ist]"</span>,
+          <span class="k">"rowType"</span>: <span class="s">"'Konto'[RowType]"</span>,
+          <span class="k">"signConvention"</span>: <span class="s">"'Konto'[SignConvention]"</span>
+        },
+        <span class="k">"objects"</span>: { <span class="c">/* Template T04B */</span> } }
+    ]
   }]
 }</pre>
     <div class="cmds">
@@ -441,15 +445,16 @@ body.hud #hud{display:block}
       <div class="card acc"><div class="n">3 · Showcase</div><h3 data-en="47 templates, live">47 Templates, live</h3><p data-en="Fabric App “dwg cli Showcase” and the same report in Power BI on Direct Lake: filter, cross filter, sort, zoom.">Fabric App „dwg cli Showcase“ und derselbe Bericht in Power BI auf Direct Lake: filtern, querfiltern, sortieren, zoomen.</p></div>
     </div>
     <div class="thumbs">
+      <figure><img src="assets/img/demo-ueberblick.webp" alt=""><figcaption data-en="Live build result · A1">Ergebnis Live-Build · A1</figcaption></figure>
       <figure><img src="assets/img/dwg-mockup-to-app.webp" alt=""><figcaption>MockupKitchen → dwg</figcaption></figure>
-      <figure><img src="assets/img/app-c03.webp" alt=""><figcaption data-en="C03 · columns with ΔPY">C03 · Säulen mit ΔPY</figcaption></figure>
+      <figure style="display:none"><img src="assets/img/app-c03.webp" alt=""><figcaption data-en="C03 · columns with ΔPY">C03 · Säulen mit ΔPY</figcaption></figure>
       <figure><img src="assets/img/app-c13.webp" alt=""><figcaption>C13 · Small Multiples</figcaption></figure>
       <figure><img src="assets/img/app-t04b.webp" alt=""><figcaption data-en="T04B · app">T04B · App</figcaption></figure>
       <figure><img src="assets/img/pbi-t04b.webp" alt=""><figcaption data-en="T04B · Power BI">T04B · Power BI</figcaption></figure>
       <figure><img src="assets/img/app-t05b.webp" alt=""><figcaption data-en="T05B · cash flow">T05B · Cashflow</figcaption></figure>
     </div>
   </div>
-  <div class="foot"><span data-en="If the network fails: appendix A1 to A3 shows the showcase as screenshots">Falls das Netz streikt: Anhang A1 bis A3 zeigt die Showcase als Bilder</span><span>github.com/Losveratos/Data-Bash-2026</span></div>
+  <div class="foot"><span data-en="If the network fails: appendix A1 to A4 shows the live build and the showcase as screenshots">Falls das Netz streikt: Anhang A1 bis A4 zeigt Live-Build und Showcase als Bilder</span><span>github.com/Losveratos/Data-Bash-2026</span></div>
 </section>
 
 <!-- 11 PRUEFSTAND -->
@@ -567,7 +572,23 @@ body.hud #hud{display:block}
 
 <!-- APPENDIX -->
 <section class="slide appx" data-chapter="Anhang" data-chapter-en="Appendix">
-  <div class="kicker" data-en="A1 · fallback · showcase">A1 · Rückfall · Showcase</div>
+  <div class="kicker" data-en="A1 · fallback · live build">A1 · Rückfall · Live-Build</div>
+  <h2 class="t" style="max-width:none" data-en="Three tiles, one spec, rendered without Fabric">Drei Kacheln, eine Spec, ohne Fabric gerendert</h2>
+  <div class="cols c21 hug" style="margin-top:10px">
+    <div class="fig"><p class="fig-title" data-en="<b>App page “Überblick”</b> · dwg app page, browser harness, Mini-DAX"><b>App-Seite „Überblick“</b> · dwg app page, Browser-Test, Mini-DAX</p><img src="assets/img/demo-ueberblick.webp" alt="Ergebnis des Live-Builds: Seite Überblick mit C03, C13 und T04B"></div>
+    <div class="cmds">
+      <div class="cmd"><code>dwg tile add ×3</code><p data-en="C03, C13, T04B from the showcase model; C13 first stops and asks for the channel field">C03, C13, T04B aus dem Showcase-Modell; C13 hält zuerst an und fragt nach dem Kanalfeld</p></div>
+      <div class="cmd"><code>dwg lint · dwg check</code><p data-en="0 errors, 0 problems, 1 contrast warning">0 Fehler, 0 Probleme, 1 Kontrastwarnung</p></div>
+      <div class="cmd"><code>dwg app page</code><p data-en="1 of 1 page without findings, about 9 s">1 von 1 Seite ohne Befund, rund 9 s</p></div>
+      <div class="cmd"><code>dwg pbip · dwg validate</code><p data-en="13 files, 7 visuals, pbir: 30 fields found in the model">13 Dateien, 7 Visuals, pbir: 30 Felder im Modell gefunden</p></div>
+      <div class="cmd"><code>parity</code><p data-en="Power BI and app: no findings">Power BI und App: keine Befunde</p></div>
+    </div>
+  </div>
+  <div class="foot"><span data-en="Whole run about 28 s, fully local · demo/demo.ps1 in the repository">Ganzer Lauf rund 28 s, komplett lokal · demo/demo.ps1 im Repository</span><span data-en="Captured 26.11.2026">Aufgenommen 26.11.2026</span></div>
+</section>
+
+<section class="slide appx" data-chapter="Anhang" data-chapter-en="Appendix">
+  <div class="kicker" data-en="A2 · fallback · showcase">A2 · Rückfall · Showcase</div>
   <h2 class="t" style="max-width:none" data-en="Columns with prior-year variance, app and Power BI">Säulen mit Vorjahresabweichung, App und Power BI</h2>
   <div class="cols c2" style="margin-top:10px">
     <div class="fig"><p class="fig-title"><b>Fabric App</b> · C03</p><img src="assets/img/app-c03.webp" alt="C03 in der App"></div>
@@ -576,7 +597,7 @@ body.hud #hud{display:block}
 </section>
 
 <section class="slide appx" data-chapter="Anhang" data-chapter-en="Appendix">
-  <div class="kicker" data-en="A2 · fallback · showcase">A2 · Rückfall · Showcase</div>
+  <div class="kicker" data-en="A3 · fallback · showcase">A3 · Rückfall · Showcase</div>
   <h2 class="t" style="max-width:none" data-en="Small multiples on one scale, ranking with month and YTD">Small Multiples auf einer Skala, Ranking mit Monat und YTD</h2>
   <div class="cols c2" style="margin-top:10px">
     <div class="fig"><p class="fig-title"><b>Fabric App</b> · C13</p><img src="assets/img/app-c13.webp" alt="C13 in der App"></div>
@@ -585,7 +606,7 @@ body.hud #hud{display:block}
 </section>
 
 <section class="slide appx" data-chapter="Anhang" data-chapter-en="Appendix">
-  <div class="kicker" data-en="A3 · fallback · showcase">A3 · Rückfall · Showcase</div>
+  <div class="kicker" data-en="A4 · fallback · showcase">A4 · Rückfall · Showcase</div>
   <h2 class="t" style="max-width:none" data-en="Cash-flow bridge and value cascades">Cashflow-Brücke und Wert-Kaskaden</h2>
   <div class="cols c2" style="margin-top:10px">
     <div class="fig"><p class="fig-title"><b>Fabric App</b> · T05B</p><img src="assets/img/app-t05b.webp" alt="T05B in der App"></div>
@@ -594,7 +615,7 @@ body.hud #hud{display:block}
 </section>
 
 <section class="slide appx" data-chapter="Anhang" data-chapter-en="Appendix">
-  <div class="kicker" data-en="A4 · links and commands">A4 · Links und Befehle</div>
+  <div class="kicker" data-en="A5 · links and commands">A5 · Links und Befehle</div>
   <h2 class="t" style="max-width:none" data-en="Everything you need to try it">Alles zum Nachbauen</h2>
   <div class="cols c2" style="margin-top:16px">
     <div class="cmds">
@@ -613,7 +634,7 @@ body.hud #hud{display:block}
 </section>
 
 <section class="slide appx" data-chapter="Anhang" data-chapter-en="Appendix">
-  <div class="kicker" data-en="A5 · sources and notes">A5 · Quellen und Hinweise</div>
+  <div class="kicker" data-en="A6 · sources and notes">A6 · Quellen und Hinweise</div>
   <h2 class="t" style="max-width:none" data-en="Sources, licences, data">Quellen, Lizenzen, Daten</h2>
   <div class="cols c2" style="margin-top:16px">
     <div class="card"><ul>
