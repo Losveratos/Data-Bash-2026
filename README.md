@@ -5,7 +5,7 @@ Slides and material for the talk at Data Bash 2026 (5 December 2026, online).
 
 - **Folien / slides:** `index.html` im Browser öffnen. Deutsch ist Standard, Englisch mit `index.html?lang=en`
   oder Taste `l`. Tasten: → / Leertaste weiter, ← zurück, `o` Übersicht, `h` Foliennummer.
-- **PDF:** `export/Data-Bash-2026-IBCS-Fabric-Apps-DE.pdf` und `-EN.pdf`, erzeugt mit `node tools/export.mjs both`
+- **PDF:** `node tools/export.mjs both` erzeugt `export/Data-Bash-2026-IBCS-Fabric-Apps-DE.pdf` und `-EN.pdf` (die fertigen PDFs kommen mit der Endfassung ins Repo)
   (Playwright; prüft dabei Konsole, externe Abrufe und Überläufe je Folie).
 - **Demo:** `demo/` (Live-Build mit der dwg cli, Ablauf in `demo/DEMO.md`).
 
